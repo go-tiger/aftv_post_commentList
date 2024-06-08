@@ -40,7 +40,6 @@ function extractData(data) {
     return {
       user_nick: item.user_nick,
       user_id: item.user_id,
-      comment: splitComments[0].trim(),
       like_cnt: item.like_cnt,
       second_comment: secondComment,
     };
@@ -51,16 +50,18 @@ function displayComments(comments) {
   let table = `<table>
         <tr>
             <th>순위</th>
-            <th>방송</th>
-            <th>마크</th>
+            <th>닉네임</th>
+            <th>마크 아이디</th>
+            <th>아프리카 아이디</th>
             <th>UP순</th>
         </tr>`;
 
   comments.forEach((comment, index) => {
     table += `<tr>
             <td>${index + 1}</td>
-            <td>${comment.user_nick}(${comment.user_id})</td>
-            <td>${comment.comment}(${comment.second_comment})</td>
+            <td>${comment.user_nick}</td>
+            <td>${comment.second_comment}</td>
+            <td>${comment.user_id}</td>
             <td>${comment.like_cnt}</td>
         </tr>`;
   });
