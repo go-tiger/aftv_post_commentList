@@ -17,8 +17,13 @@ async function getAllComments() {
     data = await fetchComments(page);
     allComments = allComments.concat(extractData(data.data));
   }
-
-  allComments.sort((a, b) => b.like_cnt - a.like_cnt);
+  allComments.sort((a, b) => {
+    if (b.like_cnt !== a.like_cnt) {
+      return b.like_cnt - a.like_cnt;
+    } else {
+      return new Date(a.reg_date) - new Date(b.reg_date);
+    }
+  });
 
   displayComments(allComments);
 }
@@ -41,7 +46,8 @@ function extractData(data) {
       user_nick: item.user_nick,
       user_id: item.user_id,
       like_cnt: item.like_cnt,
-      second_comment: secondComment,
+      mc_id: secondComment,
+      reg_date: new Date(item.reg_date),
     };
   });
 }
@@ -60,7 +66,7 @@ function displayComments(comments) {
     table += `<tr>
             <td>${index + 1}</td>
             <td>${comment.user_nick}</td>
-            <td>${comment.second_comment}</td>
+            <td>${comment.mc_id}</td>
             <td>${comment.user_id}</td>
             <td>${comment.like_cnt}</td>
         </tr>`;
