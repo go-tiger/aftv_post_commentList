@@ -6,15 +6,13 @@ async function fetchComments(page) {
 
 async function getAllComments() {
   let data = await fetchComments(1);
-
-  const totalComments = data.comment_count;
-  document.getElementById('totalComments').innerText = `총 댓글 수: ${totalComments}`;
-
+  let totalComments = data.comment_count;
   const totalPages = data.meta.last_page;
 
   let allComments = extractData(data.data);
   for (let page = 2; page <= totalPages; page++) {
     data = await fetchComments(page);
+    totalComments += data.data.length;
     allComments = allComments.concat(extractData(data.data));
   }
   allComments.sort((a, b) => {
@@ -26,6 +24,7 @@ async function getAllComments() {
   });
 
   displayComments(allComments);
+  document.getElementById('totalComments').innerText = `총 댓글 수: ${totalComments}`;
 }
 
 function extractData(data) {
