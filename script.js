@@ -1,5 +1,5 @@
 async function fetchComments(page) {
-  const response = await fetch(`https://bjapi.afreecatv.com/api/moolchoco/title/126972041/comment?page=${page}`).json();
+  const response = await fetch(`https://bjapi.afreecatv.com/api/moolchoco/title/126972041/comment?page=${page}`);
   return response.json();
 }
 
