@@ -61,13 +61,18 @@ function displayComments(comments) {
         </tr>`;
 
   comments.forEach((comment, index) => {
-    table += `<tr>
-            <td>${index + 1}</td>
-            <td>${comment.user_nick}</td>
-            <td>${comment.mc_id}</td>
-            <td>${comment.user_id}</td>
-            <td>${comment.like_cnt}</td>
-        </tr>`;
+    if (index >= 80) {
+      table += `<tr class="highlighted">`;
+    } else {
+      table += `<tr>`;
+    }
+    table += `
+                  <td>${index + 1}</td>
+                  <td>${comment.user_nick}</td>
+                  <td>${comment.mc_id}</td>
+                  <td>${comment.user_id}</td>
+                  <td>${comment.like_cnt}</td>
+              </tr>`;
   });
   table += `</table>`;
 

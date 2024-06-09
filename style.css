@@ -2,13 +2,17 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-table,
 th,
 td {
-  border: 1px solid black;
-}
-th,
-td {
+  border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
+}
+tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr.highlighted {
+  background-color: #ddd;
 }
