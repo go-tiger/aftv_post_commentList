@@ -5,7 +5,7 @@ async function fetchComments(page) {
 
 async function getAllComments() {
   let data = await fetchComments(1);
-  let totalComments = data.comment_count;
+  let totalComments = data.data.length;
   const totalPages = data.meta.last_page;
 
   let allComments = extractData(data.data);
