@@ -57,7 +57,7 @@ function displayComments(comments) {
             <th>닉네임</th>
             <th>마크 아이디</th>
             <th>아프리카 아이디</th>
-            <th>UP순</th>
+            <th>UP</th>
         </tr>`;
 
   comments.forEach((comment, index) => {
